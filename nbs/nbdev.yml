@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "tidytuesday005"
+  site-url: "https://jbwhit.github.io/tidytuesday005"
+  description: "Canadian Hockey Player Birth Months"
+  repo-branch: main
+  repo-url: "https://github.com/jbwhit/tidytuesday005"
