@@ -20,3 +20,10 @@ Fill me in please! Don’t forget code examples:
 ```
 
     2
+
+## Plan
+
+- [x] Get the example to work at all.
+- [ ] Can I use the example in a notebook?
+- [ ] Pass data to it?
+- [ ] Create a dynamic plot with different year selectors?
