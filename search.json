@@ -1,0 +1,152 @@
+[
+  {
+    "objectID": "01_notebookexample.html",
+    "href": "01_notebookexample.html",
+    "title": "tidytuesday005",
+    "section": "",
+    "text": "import numpy as np\n\n\nnp.arange(10)\n\narray([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])\n\n\n#| standalone: true\n\nfrom shiny import *\n\napp_ui = ui.page_fluid(\n    ui.input_slider(\"n\", \"N\", 0, 100, 40),\n    ui.output_text_verbatim(\"txt\"),\n)\n\ndef server(input, output, session):\n    @output\n    @render.text\n    def txt():\n        return f\"The value of n*2 is {input.n() * 2}\"\n\napp = App(app_ui, server)",
+    "crumbs": [
+      "01_notebookexample.html"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "tidytuesday005",
+    "section": "",
+    "text": "This file will become your README and also the index of your documentation.",
+    "crumbs": [
+      "tidytuesday005"
+    ]
+  },
+  {
+    "objectID": "index.html#install",
+    "href": "index.html#install",
+    "title": "tidytuesday005",
+    "section": "Install",
+    "text": "Install\npip install tidytuesday005",
+    "crumbs": [
+      "tidytuesday005"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-use",
+    "href": "index.html#how-to-use",
+    "title": "tidytuesday005",
+    "section": "How to use",
+    "text": "How to use\nFill me in please! Don’t forget code examples:\n\n1+1\n\n2",
+    "crumbs": [
+      "tidytuesday005"
+    ]
+  },
+  {
+    "objectID": "index.html#plan",
+    "href": "index.html#plan",
+    "title": "tidytuesday005",
+    "section": "Plan",
+    "text": "Plan\n\nGet the example to work at all.\nCan I use the example in a notebook?\nPass data to it?\nCreate a dynamic plot with different year selectors?",
+    "crumbs": [
+      "tidytuesday005"
+    ]
+  },
+  {
+    "objectID": "example.html",
+    "href": "example.html",
+    "title": "Shinylive in Quarto example",
+    "section": "",
+    "text": "This is a Shinylive application embedded in a Quarto doc.\n#| standalone: true\n\nfrom shiny import *\n\napp_ui = ui.page_fluid(\n    ui.input_slider(\"n\", \"N\", 0, 100, 40),\n    ui.output_text_verbatim(\"txt\"),\n)\n\ndef server(input, output, session):\n    @output\n    @render.text\n    def txt():\n        return f\"The value of n*2 is {input.n() * 2}\"\n\napp = App(app_ui, server)",
+    "crumbs": [
+      "Shinylive in Quarto example"
+    ]
+  },
+  {
+    "objectID": "core.html",
+    "href": "core.html",
+    "title": "core",
+    "section": "",
+    "text": "import datetime\nimport warnings\n\nimport matplotlib as mpl\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport pandas as pd\nimport seaborn as sns\nfrom matplotlib.ticker import FuncFormatter\nfrom pandas.plotting import register_matplotlib_converters\n\nregister_matplotlib_converters()\nsns.set()\nsns.set_context(\"notebook\")\nplt.rcParams[\"figure.figsize\"] = 10, 6\npd.options.display.max_columns = None\npd.options.display.max_rows = None\npd.options.display.precision = 4\nwarnings.simplefilter(action=\"ignore\", category=FutureWarning)\n\ndollar_formatter = FuncFormatter(lambda x, pos: f\"${x:,.0f}\")\nthousands_formatter = FuncFormatter(lambda x, pos: f\"{x:,.0f}\")",
+    "crumbs": [
+      "core"
+    ]
+  },
+  {
+    "objectID": "core.html#imports",
+    "href": "core.html#imports",
+    "title": "core",
+    "section": "",
+    "text": "import datetime\nimport warnings\n\nimport matplotlib as mpl\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport pandas as pd\nimport seaborn as sns\nfrom matplotlib.ticker import FuncFormatter\nfrom pandas.plotting import register_matplotlib_converters\n\nregister_matplotlib_converters()\nsns.set()\nsns.set_context(\"notebook\")\nplt.rcParams[\"figure.figsize\"] = 10, 6\npd.options.display.max_columns = None\npd.options.display.max_rows = None\npd.options.display.precision = 4\nwarnings.simplefilter(action=\"ignore\", category=FutureWarning)\n\ndollar_formatter = FuncFormatter(lambda x, pos: f\"${x:,.0f}\")\nthousands_formatter = FuncFormatter(lambda x, pos: f\"{x:,.0f}\")",
+    "crumbs": [
+      "core"
+    ]
+  },
+  {
+    "objectID": "core.html#data",
+    "href": "core.html#data",
+    "title": "core",
+    "section": "Data",
+    "text": "Data\n\ncanada_births_1991_2022 = pd.read_csv(\n    \"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-01-09/canada_births_1991_2022.csv\"\n)\nnhl_player_births = pd.read_csv(\n    \"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-01-09/nhl_player_births.csv\"\n)\nnhl_rosters = pd.read_csv(\n    \"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-01-09/nhl_rosters.csv\"\n)\nnhl_teams = pd.read_csv(\n    \"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-01-09/nhl_teams.csv\"\n)\n\n\nnhl_rosters['season'].value_counts()\n\nseason\n20212022    1212\n20222023    1161\n20032004    1128\n20182019    1099\n20022003    1093\n20202021    1078\n20012002    1075\n20002001    1073\n20052006    1068\n20172018    1067\n20152016    1067\n20142015    1065\n20112012    1060\n20102011    1059\n20132014    1058\n20082009    1055\n20162017    1053\n20192020    1053\n20092010    1049\n20062007    1041\n19992000    1035\n19981999    1028\n20072008    1010\n19951996     993\n19931994     987\n20122013     984\n19971998     944\n19961997     944\n19941995     895\n19911992     884\n19921993     857\n19901991     821\n19881989     809\n19871988     807\n20232024     798\n19891990     795\n19851986     754\n19811982     745\n19831984     743\n19861987     742\n19791980     709\n19821983     709\n19841985     707\n19801981     702\n19741975     560\n19771978     558\n19781979     532\n19761977     532\n19751976     526\n19731974     485\n19721973     438\n19701971     431\n19711972     428\n19681969     352\n19691970     346\n19671968     345\n19341935     200\n19331934     195\n19651966     193\n19361937     189\n19301931     187\n19321933     184\n19501951     182\n19661967     179\n19351936     179\n19641965     178\n19631964     175\n19371938     174\n19491950     172\n19541955     172\n19291930     170\n19571958     167\n19601961     167\n19411942     167\n19521953     163\n19381939     163\n19471948     162\n19281929     162\n19261927     162\n19431944     161\n19511952     160\n19271928     159\n19531954     158\n19621963     158\n19591960     157\n19391940     156\n19311932     156\n19551956     154\n19611962     153\n19461947     153\n19401941     152\n19561957     151\n19481949     150\n19581959     148\n19421943     147\n19451946     141\n19441945     141\n19251926     110\n19241925      91\n19231924      54\n19191920      51\n19171918      51\n19201921      49\n19211922      49\n19221923      45\n19181919      37\nName: count, dtype: int64",
+    "crumbs": [
+      "core"
+    ]
+  },
+  {
+    "objectID": "core.html#functions",
+    "href": "core.html#functions",
+    "title": "core",
+    "section": "Functions",
+    "text": "Functions\n\ndef filter_players(df, nationality):\n    \"\"\"\n    Filter players based on nationality.\n\n    Parameters:\n    - df (DataFrame): The input dataframe containing player information.\n    - nationality (str): The nationality to filter by. Use \"CAN\" for Canadian players, or leave empty for no filter.\n\n    Returns:\n    - filtered_df (DataFrame): The filtered dataframe based on the nationality.\n    \"\"\"\n    if nationality == \"CAN\":\n        return df[df[\"birth_country\"] == \"CAN\"]\n    elif nationality == \"\":\n        return df\n    else:\n        return df[df[\"birth_country\"] != \"CAN\"]\n\n\ndef linear_weight(month):\n    \"\"\"\n    Calculate the linear weight for a given month.\n\n    Parameters:\n    - month (int): The month for which to calculate the weight.\n\n    Returns:\n    - weight (int): The linear weight for the given month.\n    \"\"\"\n    # Assuming month is an integer from 1 (January) to 12 (December)\n    return month\n\n\ndef logistic_weight(month, midpoint=6.5, growth_rate=1, max_value=12):\n    \"\"\"\n    Calculate the logistic weight for a given month.\n\n    Parameters:\n    - month (int): The month for which to calculate the weight.\n    - midpoint (float): The midpoint of the logistic function. Default is 6.5.\n    - growth_rate (float): The growth rate of the logistic function. Default is 1.\n    - max_value (float): The maximum value of the logistic function. Default is 12.\n\n    Returns:\n    - weight (float): The logistic weight for the given month.\n    \"\"\"\n    return max_value / (1 + np.exp(-growth_rate * (month - midpoint)))\n\n\ndef calculate_metric(birth_months, weight_function):\n    \"\"\"\n    Calculate a metric based on the birth months and a weight function.\n\n    Parameters:\n    - birth_months (list): A list of birth months.\n    - weight_function (function): The weight function to use for calculating the metric.\n\n    Returns:\n    - metric (float): The calculated metric.\n    \"\"\"\n    weighted_sum = sum(weight_function(month) for month in birth_months)\n    return weighted_sum / len(birth_months)\n\n\ndef raw_to_cleaned_canada(df_):\n    \"\"\"\n    Clean the raw Canada birth dataframe.\n\n    Parameters:\n    - df_ (DataFrame): The raw Canada birth dataframe.\n\n    Returns:\n    - cleaned_df (DataFrame): The cleaned Canada birth dataframe with a new \"yearmonth\" column.\n    \"\"\"\n    return df_.assign(yearmonth=pd.to_datetime(df_[[\"year\", \"month\"]].assign(day=1)))\n\n\ndef raw_to_cleaned_nhl_player_births(df_):\n    \"\"\"\n    Clean the raw NHL player births dataframe.\n\n    Parameters:\n    - df_ (DataFrame): The raw NHL player births dataframe.\n\n    Returns:\n    - cleaned_df (DataFrame): The cleaned NHL player births dataframe with a new \"birth_date\" column.\n    \"\"\"\n    return df_.assign(birth_date=pd.to_datetime(df_[\"birth_date\"]))\n\n\ndef simulate_player_birth_skew(n_players=100, n_simulations=10):\n    \"\"\"\n    Simulate the player birth skew by randomly selecting birth months based on the Canadian birth rate.\n\n    Parameters:\n    - n_players (int): Number of players to simulate. Default is the size of nhl_player_births.\n    - n_simulations (int): Number of simulations to run. Default is 10.\n\n    Returns:\n    - weights (ndarray): An array containing the calculated metric for each simulation.\n    \"\"\"\n\n    # Initialize an empty list to store the calculated metric for each simulation\n    weights = []\n\n    # Run the simulations\n    for sim in range(n_simulations):\n        # Randomly select birth months based on the Canadian birth rate\n        birth_months = np.random.choice(\n            canadian_births_percentage.index,\n            p=canadian_births_percentage.values / 100,\n            replace=True,\n            size=n_players,\n        )\n\n        # Calculate the metric using the linear weight function\n        weight = calculate_metric(birth_months, linear_weight)\n\n        # Append the calculated metric to the list\n        weights.append(weight)\n\n    return np.array(weights)\n\n\ncanadian_players_by_birth = filter_players(nhl_player_births, nationality=\"CAN\")\nnoncanadian_players_by_birth = filter_players(nhl_player_births, nationality=\"non Canadian\")\nall_players_by_birth = filter_players(nhl_player_births, nationality=\"\")\n\nclean_canada_births = raw_to_cleaned_canada(canada_births_1991_2022)\nclean_nhl_player_births = raw_to_cleaned_nhl_player_births(nhl_player_births)\n\n\ncanadian_births_percentage = (\n    clean_canada_births.groupby(\"month\")[\"births\"].sum()\n    / clean_canada_births[\"births\"].sum()\n    * 100.0\n)",
+    "crumbs": [
+      "core"
+    ]
+  },
+  {
+    "objectID": "core.html#eda",
+    "href": "core.html#eda",
+    "title": "core",
+    "section": "EDA",
+    "text": "EDA\n\nn_players = nhl_player_births[\"player_id\"].nunique()",
+    "crumbs": [
+      "core"
+    ]
+  },
+  {
+    "objectID": "core.html#plots",
+    "href": "core.html#plots",
+    "title": "core",
+    "section": "Plots",
+    "text": "Plots\n\nWhat does the birth rate for Canadians look like (agg monthly)?\n\nfig, ax = plt.subplots(figsize=(10, 6))\nfig.patch.set_facecolor(\"w\")\nclean_canada_births.plot(x=\"yearmonth\", y=\"births\", ax=ax)\nfig.tight_layout()\n\n\n\n\n\n\n\n\n\nclean_canada_births.head()\n\n\n\n\n\n\n\n\n\nyear\nmonth\nbirths\nyearmonth\n\n\n\n\n0\n1991\n1\n32213\n1991-01-01\n\n\n1\n1991\n2\n30345\n1991-02-01\n\n\n2\n1991\n3\n34869\n1991-03-01\n\n\n3\n1991\n4\n35398\n1991-04-01\n\n\n4\n1991\n5\n36371\n1991-05-01\n\n\n\n\n\n\n\n\n\nclean_canada_births.tail()\n\n\n\n\n\n\n\n\n\nyear\nmonth\nbirths\nyearmonth\n\n\n\n\n379\n2022\n8\n31706\n2022-08-01\n\n\n380\n2022\n9\n30472\n2022-09-01\n\n\n381\n2022\n10\n29671\n2022-10-01\n\n\n382\n2022\n11\n28428\n2022-11-01\n\n\n383\n2022\n12\n27540\n2022-12-01\n\n\n\n\n\n\n\n\n\n# Check if the sum of Canadian births percentage is close to 100\nassert np.isclose(canadian_births_percentage.sum(), 100.0)\n\n\n\nWhat does the monthly birth rate for Canadians look like?\n\nfig, ax = plt.subplots(figsize=(10, 6))\nfig.patch.set_facecolor(\"w\")\nsns.boxenplot(data=clean_canada_births, ax=ax, x=\"month\", y=\"births\")\nfig.tight_layout()\n\n\n\n\n\n\n\n\n\n\nWhat does the monthly birth rate for NHL players look like?\n\nclean_nhl_player_births.head()[[\"player_id\", \"birth_month\"]]\n\n\n\n\n\n\n\n\n\nplayer_id\nbirth_month\n\n\n\n\n0\n8467867\n3\n\n\n1\n8445176\n9\n\n\n2\n8460014\n4\n\n\n3\n8460510\n5\n\n\n4\n8459596\n8\n\n\n\n\n\n\n\n\n\ng = clean_nhl_player_births.groupby([\"birth_month\"]).count()[\"player_id\"]\n\n\nmonth_counts = clean_nhl_player_births[\"birth_month\"].value_counts().sort_index()\n\n\nmonth_counts\n\n# Create a DataFrame for plotting\nplot_data = pd.DataFrame(\n    {\"Month\": month_counts.index, \"Player Count\": month_counts.values}\n)\n\n# Create the boxenplot\n\n\nfig, ax = plt.subplots(figsize=(10, 6))\nfig.patch.set_facecolor(\"w\")\nsns.boxenplot(x=\"Month\", y=\"Player Count\", data=plot_data, ax=ax)\n# ax.xaxis.set_major_formatter(dollar_formatter)\nfig.tight_layout()\n\n\n\n\n\n\n\n\n\nfig, ax = plt.subplots(figsize=(10, 6))\nfig.patch.set_facecolor(\"w\")\nsns.boxenplot(data=clean_canada_births, ax=ax, x=\"month\", y=\"births\")\nax.scatter(g.index - 1, g)\nfig.tight_layout()\n\n\n\n\n\n\n\n\n\n# Number of bootstrap iterations\nn_iterations = 1000\n\n# List to store bootstrap samples\nbootstrap_samples_list = []\n\nfor i in range(n_iterations):\n    # Sample the entire dataset with replacement\n    sample = clean_nhl_player_births.sample(frac=1, replace=True)\n    # Count the number of players for each month in the sample\n    month_counts = sample[\"birth_month\"].value_counts().sort_index()\n    # Store the counts with the month information\n    for month in month_counts.index:\n        bootstrap_samples_list.append({\"Month\": month, \"Count\": month_counts[month]})\n\n# Concatenate all samples into a DataFrame\nbootstrap_samples = pd.concat(\n    [pd.DataFrame([sample]) for sample in bootstrap_samples_list], ignore_index=True\n)\n\n# Now plot the data\nsns.boxenplot(x=\"Month\", y=\"Count\", data=bootstrap_samples)\nplt.show()",
+    "crumbs": [
+      "core"
+    ]
+  },
+  {
+    "objectID": "core.html#plan-create-a-live-dashboard-with-some-kind-of-interactivity",
+    "href": "core.html#plan-create-a-live-dashboard-with-some-kind-of-interactivity",
+    "title": "core",
+    "section": "Plan: create a live dashboard with some kind of interactivity",
+    "text": "Plan: create a live dashboard with some kind of interactivity\n\nfilter by Canadian born\nfilter by ~Candian born\ndon’t filter (all)",
+    "crumbs": [
+      "core"
+    ]
+  },
+  {
+    "objectID": "core.html#dont-run-for-now",
+    "href": "core.html#dont-run-for-now",
+    "title": "core",
+    "section": "Don’t run for now",
+    "text": "Don’t run for now\n\n```{shinylive-python}\n#| standalone: true\n\nfrom shiny import *\n\napp_ui = ui.page_fluid(\n    ui.input_slider(\"n\", \"N\", 0, 100, 40),\n    ui.output_text_verbatim(\"txt\"),\n)\n\ndef server(input, output, session):\n    @output\n    @render.text\n    def txt():\n        return f\"The value of n*2 is {input.n() * 2}\"\n\napp = App(app_ui, server)\n\n```\n\nSyntaxError: invalid syntax (918194286.py, line 1)\n\n\n\n@output\n    @render.plot\n    def plot():\n        \n        return fig\n\n\nfrom pathlib import Path\n\nimport pandas\nfrom shiny import App, render, ui\n\napp_ui = ui.page_fluid(\n    ui.input_checkbox_group( \n        \"checkbox_group\", \n        \"Birth Countries\", \n        { \n            \"born_canada\": \"Born in Canada\",\n            \"not_born_canada\": \"Not born in Canada\",\n        }, \n    ),\n)\n\n\ndef server(input, output, session):\n    @output\n    @render.table\n    def table():\n        infile = Path(__file__).parent / \"mtcars.csv\"\n        df = pandas.read_csv(infile)\n        # Use the DataFrame's to_html() function to convert it to an HTML table, and\n        # then wrap with ui.HTML() so Shiny knows to treat it as raw HTML.\n        return df\n\n\napp = App(app_ui, server)\n\n\nfrom shiny import App, render, req, ui\n\napp_ui = ui.page_fluid(\n    ui.input_checkbox_group( \n        \"checkbox_group\", \n        \"Checkbox group\", \n        { \n            \"a\": \"A\", \n            \"b\": \"B\", \n            \"c\": \"C\", \n        }, \n    ), \n    ui.output_text(\"value\"),\n)\n\ndef server(input, output, session):\n    @render.text\n    def value():\n        return \", \".join(input.checkbox_group())\n\napp = App(app_ui, server)\n\n\nReproduce the visual",
+    "crumbs": [
+      "core"
+    ]
+  },
+  {
+    "objectID": "core.html#questions",
+    "href": "core.html#questions",
+    "title": "core",
+    "section": "Questions",
+    "text": "Questions\n\nShould I exclusively look at NHL players born in Canada?\nShould I weight the overall Canada birth rate based on NHL player density?\n\nI think yes, and I can do it by sampling based on player’s birth year.\n\nShould I slice active players by season (year)? As in, over time is the effect changing?",
+    "crumbs": [
+      "core"
+    ]
+  }
+]
